@@ -12,14 +12,12 @@ Get up and running in a few minutes with our drop-in turn-by-turn navigation `Na
 
 ## Features
 
-- Drop-in turn-by-turn navigation UI
-- Automotive, cycling, and walking directions
-- Traffic avoidance
-- Maneuver announcements
-- Text instructions
-- Text to speech via Amazon Polly - no AWS key needed
-- Automatic rerouting
-- Snap to route
+* A full-fledged turn-by-turn navigation UI ready to drop into your application
+* [Professionally designed map styles](https://www.mapbox.com/maps/) for daytime and nighttime driving
+* Worldwide driving, cycling, and walking directions powered by [open data](https://www.mapbox.com/about/open/) and user feedback
+* Traffic avoidance and proactive rerouting based on current conditions in [32 countries](https://www.mapbox.com/api-documentation/pages/traffic-countries.html)
+* Natural-sounding turn instructions powered by [Amazon Polly](https://aws.amazon.com/polly/) (no configuration needed)
+* [Support for 18 languages](./docs/guides/Localization and Internationalization.md)
 
 ## [Documentation](https://www.mapbox.com/mapbox-navigation-ios/navigation/)
 
@@ -170,10 +168,6 @@ This library relies heavily on notifications for letting the developer know when
 ## Building your own custom navigation UI
 
 Looking for a more advanced use case? See our installation guide of [MapboxCoreNavigation](./custom-navigation.md).
-
-## Language support
-
-See [languages.md](./languages.md) for more information.
 
 ## Contributing
 
