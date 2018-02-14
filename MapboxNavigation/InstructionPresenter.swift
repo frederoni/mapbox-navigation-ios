@@ -22,18 +22,19 @@ class InstructionPresenter {
 
             if let shieldKey = component.shieldKey() {
                 if let cachedImage = imageRepository.cachedImageForKey(shieldKey) {
+                    string.append(NSAttributedString(string: joinChar))
                     string.append(attributedString(withFont: label.font, shieldImage: cachedImage))
                 } else {
                     // Display road code while shield is downloaded
                     if let text = component.text {
                         string.append(NSAttributedString(string: joinChar + text, attributes: attributesForLabel(label)))
                     }
-                    shieldImageForComponent(component, height: label.shieldHeight, completion: { [unowned self] (image) in
+                    shieldImageForComponent(component, height: label.shieldHeight, completion: { [weak self] (image) in
                         guard image != nil else {
                             return
                         }
-                        if let completion = self.onShieldDownload {
-                            completion(self.attributedTextForLabel(label))
+                        if let strongSelf = self, let completion = strongSelf.onShieldDownload {
+                            completion(strongSelf.attributedTextForLabel(label))
                         }
                     })
                 }
@@ -60,14 +61,19 @@ class InstructionPresenter {
 
     private func instructionHasDownloadedAllShields() -> Bool {
         for component in instruction! {
+            print("component ==> \(String(describing: component.text))")
             guard let key = component.shieldKey() else {
                 continue
             }
+            print("\tkey ==> \(key)")
 
+            //TODO: is there something more optimal we can do here?
             if imageRepository.cachedImageForKey(key) == nil {
+                print("(missing)")
                 return false
             }
         }
+        print("... Got 'em all")
         return true
     }
 
